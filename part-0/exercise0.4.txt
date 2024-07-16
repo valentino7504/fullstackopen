@@ -1,0 +1,14 @@
+@startuml
+actor Browser as b
+actor Server as s
+
+b -> s: POST https://studies.cs.helsinki.fi/exampleapp/new_note
+s -> b: 302 Redirect Response https://studies.cs.helsinki.fi/exampleapp/notes
+b -> s: GET https://studies.cs.helsinki.fi/exampleapp/notes
+s -> b: Return HTML file
+b -> s: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+s -> b: Return main.css file
+b -> s: GET https://studies.cs.helsinki.fi/exampleapp/main.js
+s -> b: Return main.js file
+b -> s: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+s -> b: Notes data
