@@ -12,3 +12,4 @@ b -> s: GET https://studies.cs.helsinki.fi/exampleapp/main.js
 s -> b: Return main.js file
 b -> s: GET https://studies.cs.helsinki.fi/exampleapp/data.json
 s -> b: Notes data
+@enduml
