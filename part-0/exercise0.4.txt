@@ -1,6 +1,6 @@
 @startuml
-actor Browser as b
-actor Server as s
+entity Browser as b
+entity Server as s
 
 b -> s: POST https://studies.cs.helsinki.fi/exampleapp/new_note
 s -> b: 302 Redirect Response https://studies.cs.helsinki.fi/exampleapp/notes

@@ -1,0 +1,11 @@
+@startuml
+entity Browser as b
+entity Server as s
+
+note right of b
+    Loads webpage following sequence diagram in ex. 0.5
+end note
+b -> s: POST request https://studies.cs.helsinki.fi/exampleapp/new_note_spa with new note
+s -> b: Returns 201 Created response indicating note has been created
+b -> b: Reloads frontend with JavaScript
+@enduml
