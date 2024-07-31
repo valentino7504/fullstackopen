@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState } from 'react';
 
 const FeedButton = ({ handleClick, text }) => (
   <button onClick={handleClick}>
@@ -14,7 +14,7 @@ const StatisticLine = ({ text, value }) => (
 );
 
 const Statistics = ({ good, bad, neutral, finalStats }) => {
-  if (finalStats.total == 0) {
+  if (finalStats.total === 0) {
     return (
       <p>No feedback given</p>
     );
@@ -24,12 +24,12 @@ const Statistics = ({ good, bad, neutral, finalStats }) => {
       <h1>Statistics</h1>
       <table>
         <tbody>
-          <StatisticLine text={"good"} value={good} />
-          <StatisticLine text={"neutral"} value={neutral} />
-          <StatisticLine text={"bad"} value={bad} />
-          <StatisticLine text={"all"} value={finalStats.total} />
-          <StatisticLine text={"average"} value={finalStats.average} />
-          <StatisticLine text={"positive"} value={finalStats.percentage} />
+          <StatisticLine text='good' value={good} />
+          <StatisticLine text='neutral' value={neutral} />
+          <StatisticLine text='bad' value={bad} />
+          <StatisticLine text='all' value={finalStats.total} />
+          <StatisticLine text='average' value={finalStats.average} />
+          <StatisticLine text='positive' value={finalStats.percentage} />
         </tbody>
       </table>
     </div>
@@ -49,14 +49,14 @@ const App = () => {
   );
 
   const updateStats = (good, bad, neutral) => {
-    let total = good + bad + neutral;
-    let average = (good * 1 + bad * -1) / total;
-    let percentage = '' + ((good / total) * 100) + ' %';
+    const total = good + bad + neutral;
+    const average = (good * 1 + bad * -1) / total;
+    const percentage = '' + ((good / total) * 100) + ' %';
     setFinalStats(
       {
-        total: total,
-        average: average,
-        percentage: percentage
+        total,
+        average,
+        percentage
       }
     );
   };
@@ -74,17 +74,17 @@ const App = () => {
   const handleNeutralClick = () => {
     setNeutral(neutral + 1);
     updateStats(good, bad, neutral + 1);
-  }
+  };
 
   return (
     <div>
       <h1>Give feedback</h1>
-      <FeedButton handleClick={handleGoodlick} text={"good"} />
-      <FeedButton handleClick={handleNeutralClick} text={"neutral"} />
-      <FeedButton handleClick={handleBadClick} text={"bad"} />
+      <FeedButton handleClick={handleGoodlick} text='good' />
+      <FeedButton handleClick={handleNeutralClick} text='neutral' />
+      <FeedButton handleClick={handleBadClick} text='bad' />
       <Statistics good={good} bad={bad} neutral={neutral} finalStats={finalStats} />
     </div>
-  )
+  );
 };
 
 export default App;
