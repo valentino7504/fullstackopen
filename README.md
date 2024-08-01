@@ -5,3 +5,4 @@ This repo contains my submissions for Full Stack Open by University of Helsinki.
 ## Parts Completed
 
 - Part 0
+- Part 1
