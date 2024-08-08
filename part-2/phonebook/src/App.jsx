@@ -32,7 +32,7 @@ const App = () => {
   const resetAddForm = () => {
     setNewName('');
     setNewNumber('');
-  }
+  };
 
   const addPerson = (event) => {
     event.preventDefault();
@@ -48,12 +48,14 @@ const App = () => {
         .then(returnedPerson => {
           setPersons(
             persons.map(p => p.id === returnedPerson.id ? returnedPerson : p)
-          )
+          );
         }
         )
         .catch(() => {
-          setNotif({error: true, message: `Information of ${searchPerson.name} has
-            already been removed from the server`});
+          setNotif({
+            error: true, message: `Information of ${searchPerson.name} has
+            already been removed from the server`
+          });
           setPersons(persons.filter(p => p.id !== searchPerson.id));
           resetAddForm();
           setTimeout(() => setNotif({ ...notif, message: null }), 5000);
@@ -65,7 +67,7 @@ const App = () => {
           number: newNumber
         }
       ).then(newPerson => {
-        setPersons(persons.concat(newPerson))
+        setPersons(persons.concat(newPerson));
         resetAddForm();
         setNotif({ ...notif, message: `Added ${newPerson.name}` });
         setTimeout(() => setNotif({ ...notif, message: null }), 5000);
