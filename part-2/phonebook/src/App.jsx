@@ -6,7 +6,7 @@ import Search from './components/Search';
 import Notification from './components/Notification';
 
 const App = () => {
-  const [persons, setPersons] = useState([]);
+  const [persons, setPersons] = useState(null);
   const [newName, setNewName] = useState('');
   const [newNumber, setNewNumber] = useState('');
   const [searchVal, setSearchVal] = useState('');
@@ -26,6 +26,8 @@ const App = () => {
   };
 
   useEffect(hook, []);
+
+  if (!persons) return null;
 
   const resetAddForm = () => {
     setNewName('');
