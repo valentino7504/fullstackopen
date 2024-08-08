@@ -1,14 +1,17 @@
-const Contact = ({ person }) => {
+const Contact = ({ person, handleDelete }) => {
   return (
     <div>
-      <p>{person.name} {person.number}</p>
+      <p>
+        {person.name} {person.number}
+        <button onClick={() => handleDelete(person.id)}>delete</button>
+      </p>
     </div>
   );
 };
 
-const ContactBook = ({ persons }) => (
+const ContactBook = ({ persons, handleDelete }) => (
   persons.map(person =>
-    <Contact key={person.id} person={person} />
+    <Contact key={person.id} person={person} handleDelete={handleDelete} />
   )
 );
 
