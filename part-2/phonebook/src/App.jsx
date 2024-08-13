@@ -79,9 +79,7 @@ const App = () => {
     const toDelete = persons.find(p => p.id === id);
     if (window.confirm(`Delete ${toDelete.name}?`)) {
       phoneService.deletePerson(id)
-        .then(deletedPerson => setPersons(
-          persons.filter(p => p.id !== deletedPerson.id)
-        ));
+        .then(setPersons(persons.filter(p => id !== p.id)));
     }
   };
 
