@@ -24,3 +24,5 @@ dist-ssr
 *.sw?
 requests
 node_modules/
+
+.env

@@ -5,6 +5,9 @@ import stylisticJs from '@stylistic/eslint-plugin-js';
 export default [
   js.configs.recommended,
   {
+    ignores: ["dist/**"],
+  },
+  {
     files: ["**/*.js"],
     languageOptions: {
       sourceType: "commonjs",
@@ -33,6 +36,15 @@ export default [
         'error',
         'always'
       ],
-    }
+      'eqeqeq': 'error',
+      'no-trailing-spaces': 'error',
+      'no-console': 'off',
+      'object-curly-spacing': [
+        'error', 'always'
+      ],
+      'arrow-spacing': [
+        'error', { 'before': true, 'after': true },
+      ],
+    },
   }
 ]

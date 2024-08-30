@@ -34,12 +34,23 @@ const App = () => {
     setNewNumber('');
   };
 
+  const showNotif = (error, message) => {
+    setNotif({
+      error: error, message: message
+    });
+    setTimeout(() => setNotif({ error: null, message: null }), 5000);
+  }
+
   const addPerson = (event) => {
     event.preventDefault();
     const searchPerson = persons.find(person => person.name === newName);
-    if (searchPerson && window.confirm(
-      `${searchPerson.name} is already added to phonebook, replace the old number with a new one`
-    )) {
+    let update = false;
+    if (searchPerson)
+      update = window.confirm(
+        `${searchPerson.name} is already added to phonebook, replace the old number with a new one`
+      )
+    if (searchPerson) {
+      if (!update) return;
       const updatedPerson = {
         ...searchPerson,
         number: newNumber
@@ -51,14 +62,16 @@ const App = () => {
           );
         }
         )
-        .catch(() => {
-          setNotif({
-            error: true, message: `Information of ${searchPerson.name} has
+        .catch((error) => {
+          let errorMsg;
+          if (error.status === 400)
+            errorMsg = error.response.data.server;
+          else
+            errorMsg = `Information of ${searchPerson.name} has
             already been removed from the server`
-          });
+          showNotif(true, errorMsg, errorMsg);
           setPersons(persons.filter(p => p.id !== searchPerson.id));
           resetAddForm();
-          setTimeout(() => setNotif({ ...notif, message: null }), 5000);
         });
     } else {
       phoneService.createPerson(
@@ -69,8 +82,10 @@ const App = () => {
       ).then(newPerson => {
         setPersons(persons.concat(newPerson));
         resetAddForm();
-        setNotif({ ...notif, message: `Added ${newPerson.name}` });
-        setTimeout(() => setNotif({ ...notif, message: null }), 5000);
+        showNotif(false, `Added ${newPerson.name}`);
+      }).catch(error => {
+        showNotif(true, error.response.data.error);
+        resetAddForm();
       });
     }
   };
