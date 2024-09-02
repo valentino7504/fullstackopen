@@ -2,11 +2,11 @@
   "name": "part-4",
   "version": "1.0.0",
   "description": "Blog list app for fullstack open",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node -r dotenv/config app.js",
-    "dev": "nodemon -r dotenv/config app.js",
+    "start": "node index.js",
+    "dev": "nodemon index.js",
     "lint": "eslint ."
   },
   "author": "Edwin Ade",
