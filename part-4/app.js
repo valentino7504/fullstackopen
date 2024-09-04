@@ -10,10 +10,10 @@ const middleware = require('./utils/middleware');
 const mongoUrl = config.MONGO_URL;
 
 mongoose.set('strictQuery', false);
-logger.info('connecting to mongodbl');
+logger.info('connecting to db');
 mongoose.connect(mongoUrl)
-  .then(() => logger.info('successfully connected to mongodb'))
-  .catch(error => logger.error('could not connect to mongodb:', error.message));
+  .then(() => logger.info('successfully connected to db'))
+  .catch(error => logger.error('could not connect to db:', error.message));
 
 app.use(cors());
 app.use(express.json());
