@@ -5,6 +5,7 @@ const blogsRouter = require('./controllers/blogs');
 const config = require('./utils/config');
 const logger = require('./utils/logger');
 const mongoose = require('mongoose');
+const middleware = require('./utils/middleware');
 
 const mongoUrl = config.MONGO_URL;
 
@@ -16,7 +17,13 @@ mongoose.connect(mongoUrl)
 
 app.use(cors());
 app.use(express.json());
+app.use(middleware.requestLogger);
+
+app.get('/', (req, res) => res.send('Hello World'));
 
 app.use('/api/blogs', blogsRouter);
+
+app.use(middleware.unknownEndpoint);
+app.use(middleware.errorHandler);
 
 module.exports = app;
